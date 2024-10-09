@@ -1,14 +1,13 @@
 import Model from "./Model.js";
 
-class Rango extends Model {
-  static tablename = "rango";
+class Race extends Model {
+  static tablename = "race";
   constructor(data) {
     super(data);
     this.validate();
   }
   static fields = {
-    nombre: "text",
+    name: "text",
   };
 }
-
-export default Rango;
+export default Race;

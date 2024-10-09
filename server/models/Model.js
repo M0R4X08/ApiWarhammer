@@ -34,10 +34,21 @@ class Model {
     const values = Object.keys(data)
       .map((v) => `'${data[v]}'`)
       .join(",");
-    console.log(keys);
-    console.log(values);
     const sql = `INSERT INTO ${this.tablename} (${keys}) VALUES (${values})`;
     return await db.execute(sql);
+  }
+
+  static async update(id, data) {
+    try {
+      const keys = Object.keys(data).join(",");
+      const values = Object.keys(data)
+        .map((v) => `'${data[v]}'`)
+        .join(",");
+      const query = `UPDATE ${this.tablename} SET ${keys} = ${values} WHERE id = ?`;
+      return await db.execute(query, [id]);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   static async count() {
