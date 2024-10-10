@@ -24,7 +24,7 @@ class Characters extends Model {
     relationships: "text",
     main_achievements: "text",
     creation_date: "text",
-    age: "numeric",
+    age: "text",
     additional_notes: "text",
     image: "text",
   };
