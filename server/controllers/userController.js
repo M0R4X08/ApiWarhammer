@@ -56,7 +56,7 @@ class UserController extends Controller {
           ],
         });
       }
-      const result = await User.registerUser(username, email, password);
+      const result = await User.create(username, email, password);
       const token = jwt.sign({ userId: result.username }, SECRET_JWT_KEY, {
         expiresIn: "1h",
       });

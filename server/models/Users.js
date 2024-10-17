@@ -34,17 +34,17 @@ class User extends Model {
       console.error(e);
     }
   }
+
   static async loginUser(username, email, password) {
     try {
       const user = await User.findUserByUsernameOrEmail(username, email);
       if (!user) {
         return null;
       }
-      const isValid = await bcrypt.compare(password, user.password);
-      if (!isValid) {
-        return null;
+      if (user.password === password) {
+        return user.username;
       }
-      return user.username;
+      return null;
     } catch (e) {
       console.error(e);
     }
