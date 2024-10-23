@@ -7,7 +7,7 @@ import rankRouter from "./routes/rankRoutes.js";
 import factionRouter from "./routes/factionRoutes.js";
 import subfactionRouter from "./routes/subfactionRoutes.js";
 import alignmentRouter from "./routes/alignmentRoutes.js";
-
+import serverless from "serverless-http";
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -21,6 +21,12 @@ app.use("/api/rank", rankRouter);
 app.use("/api/subfaction", subfactionRouter);
 app.use("/api/alingment", alignmentRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.get("/", (req, res) => {
+  res.send("Hello running API");
 });
+
+app.listen(port, () => {
+  console.log(`Server running`);
+});
+export default app;
+export const handler = serverless(app);
